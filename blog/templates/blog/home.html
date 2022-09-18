@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<style>
+    table{
+        width: 70%;
+    }
+    th{
+        height: 50px;
+        padding: 10px;
+        text-align: left;
+    }
+    td{
+        text-align: center;
+        padding: 5px;
+    }
+    tr:nth-child(even) {background-color: lightgoldenrodyellow}
+    tr:nth-child(odd) {background-color: orange}
+    h1{
+        border: none;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+    }
+    input[type=submit]{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 20px 40px;
+    cursor: pointer;
+    }
+
+</style>
+<body>
+    <h1>Página Inicial</h1>
+
+    <br>
+    <ul>
+        <table border="1">
+            <tr>
+                <th>Título</th>
+                <th>Breve Descrição</th>
+                <th>Autor</th>
+                <th>Data da Criação</th>
+            </tr>
+    {% for postagem in postagens %}
+            <tr>
+            <td><a href="{% url 'leitura_postagem' postagem.id %}">{{ postagem.titulo }}</a></td>
+            <td>{{ postagem.descricao }}</td>
+            <td>{{ postagem.autor }}</td>
+            <td>{{ postagem.data_publicacao }}</td>
+            </tr>
+    {% endfor %}
+        </table>
+    </ul>
+
+    <br><br><form action="{% url 'create' %}"><input type="submit" value="Criar Publicação" /></form>
+    
+</body>
+</html>
